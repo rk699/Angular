@@ -1,0 +1,143 @@
+<!-- <p>roles works!</p>
+<div class="row">
+    <div class="col"> -->
+<!-- interpolation -->
+<!-- <p>{{firstName}}</p>
+        
+    </div>
+
+    <div class="col">
+        <p>{{angularVersion}}</p>
+        
+    </div>
+
+
+
+    <div class="col">
+        <p>{{isActive}}</p>
+        
+    </div>
+
+    <div class="col">
+        <p>{{currentData}}</p>        
+    </div>
+
+    <div class="col">
+        <p>{{selectedState}}</p>        
+    </div>
+</div>
+
+<div class="row">
+    <div class="col"> -->
+<!-- Property Binding -->
+<!-- <input type="text" [value] = firstName class="form-control">
+    </div>
+
+    <div class="col">
+        <input type="text" [value] = angularVersion class="form-control">  
+    </div>
+
+    
+
+    <div class="col">
+        <input type="text" [value] = isActive class="form-control">  
+    </div>
+
+    <div class="col">
+        <input type="text" [value] = currentData class="form-control">
+    </div>
+</div> -->
+
+<!-- <div class="row">
+    <div class="col">
+        <input type="text" [value] = currentData class="form-control">
+    </div>
+    <div class="col">
+         <input type="text" [value] = "firstName" class="form-control">
+    </div> -->
+<!-- Directive - two way binding2-->
+<!-- we can use this in input elememt only -->
+<!-- <div class="col">
+        <input type="text" [(ngModel)]="firstName"/>  
+    </div>
+    <div class="col">
+         <input [type] = "inputType1"/>
+    </div>
+    <div class="col">
+        <select [(ngModel)] = "selectedState">
+            <option value="MH1"></option>
+            <option value="MH2"></option>
+            <option value="MH3"></option>
+            <option value="MH4"></option>
+            <option value="MH5"></option>
+        </select>
+    </div>
+</div> -->
+
+<!-- event Binding -->
+<!-- <div class="row">
+    <div class="col-3">
+        <button class="btn btn-success" (click)="showWelcomeAlert()">Show Alert</button>
+    </div>
+    <div class="col-3">
+        <button class="btn btn-success" (click)="showMessage(currentData.toDateString())">Display Date</button>
+    </div>
+     <div class="col-3">
+        <button class="btn btn-success" (click)="showMessage(firstName)">Display Name</button>
+    </div>
+</div> -->
+
+
+<!-- ------Upside is basic-------- -->
+<!-- <div class="row">
+    <div class="col-4">
+        <ul>
+            <li *ngFor="let item of roleLists">
+                {{item.role}}
+            </li>
+        </ul>
+    </div>
+    <div class="col-4">
+        <ul>
+            <select>
+                <option  *ngFor="let role of roleLists" [value]="role.roleId">
+                   {{role.role}}
+                </option>
+            </select>
+        </ul>
+    </div>
+</div> -->
+
+
+<div class="row">
+    @if(isLoader == false){
+    <div class="col-3"></div>
+    <div class="col-6">
+
+        <table class="table table-bordered table-striped table-hover text-center">
+            <thead class="table-dark">
+                <tr>
+                    <th>SR No</th>
+                    <th>Role Name</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let item of roleLists; let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ item.role }}</td>
+                </tr>
+            </tbody>
+
+        </table>
+
+    </div>
+    <div class="col-3"></div>
+    } @else{
+    <div class="col-12 text-center">
+        <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+    }
+</div>
