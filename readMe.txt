@@ -59,4 +59,14 @@ Environment variable(Same IP and Port Instead in one file):
 
 Crud:
 design the UI first
-then create class and field
+then create class and field then Class(for post make class model)-> component--> in service(URL)
+
+Validation: mention form check client.component.html line 30
+
+Pipe:
+
+Constants
+
+
+
+

@@ -1,0 +1,144 @@
+<div class="container mt-4">
+    <div class="row">
+
+        <!-- LEFT SIDE FORM -->
+        <div class="col-md-4">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    Client Project Form
+                </div>
+                <form [formGroup]="projectForm">
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label>Project Name</label>
+                            <input type="text" required minlength="5" class="form-control"
+                                formControlName="projectName">
+                            @if(projectForm.controls['projectName'].touched) {
+                            <div class="text-danger">
+                                @if (projectForm.controls['projectName'].errors?.['required']) {
+                                <span>This is Required</span>
+                                }
+                                @if (projectForm.controls['projectName'].errors?. ['minlength']) {
+                                <span>MIn 4 Char Required</span>
+                                }
+                            </div>
+                            }
+                        </div>
+
+                        <div class="mb-2">
+                            <label>Start Date</label>
+                            <input type="date" class="form-control" formControlName="startDate">
+                        </div>
+                        <div class="mb-2">
+                            <label>Expected End Date</label>
+                            <input type="date" class="form-control" formControlName="expectedEndDate">
+                        </div>
+
+                        <div class="mb-2">
+                            <label>Contact Name</label>
+                            <input type="text" class="form-control" formControlName="contactPerson">
+                        </div>
+                        <div class="mb-2">
+                            <label>Contact Mobile</label>
+                            <input type="number" class="form-control" formControlName="contactPersonContactNo">
+                        </div>
+                        <div class="mb-2">
+                            <label>Contact Email</label>
+                            <input type="email" class="form-control" formControlName="contactPersonEmailId">
+                        </div>
+                        <div class="mb-2">
+                            <label>Total Employee Count</label>
+                            <input type="number" class="form-control" formControlName="totalEmpWorking">
+                        </div>
+                        <div class="mb-2">
+                            <label>Project Costing</label>
+                            <input type="number" class="form-control" formControlName="projectCost">
+                        </div>
+                        <div class="mb-2">
+                            <label>Project Description</label>
+                            <textarea type="text" class="form-control" formControlName="projectDetails"></textarea>
+                        </div>
+                        <div class="mb-2">
+                            <label>Select Client</label>
+                            <select formControlName="clientId" class="form-control">
+                                <option value="">Select Client</option>
+                                @for (item of clientList; track $index) {
+                                <option [value]="item.clientId">{{item.companyName}}</option>
+                                }
+                            </select>
+
+                        </div>
+                        <div class="mb-2">
+                            <label>Lead By</label>
+                            <select formControlName="leadByEmpId" class="form-control">
+                                <option value="">Select Employee</option>
+                                @for (item of employeeList; track $index) {
+                                <option [value]="item.empId">{{item.empName}} - {{item.empCode}}</option>
+                                }
+                            </select>
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                            <button type="button" class="btn btn-success" [disabled]="projectForm.invalid"
+                                (click)="addupdateClientProject()">
+                                Save
+                            </button>
+                            <button type="button" class="btn btn-secondary" (click)="initializeForm()">
+                                Reset
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- RIGHT SIDE TABLE -->
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-dark text-white">
+                    Client List
+                </div>
+                <div class="card-body table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead class="table-light">
+                            <tr>
+                                <th>#</th>
+                                <th>Company Name </th>
+                                <th>Employee Name</th>
+                                <th>Project Name</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (clientProjectList != []) {
+                                @for (item of clientProjectList; track $index) {
+                                <tr>
+                                    <td>{{$index+1}}</td>
+                                    <td>{{item.clientName | uppercase}}</td>
+                                    <td>{{item.empName}}</td>
+                                    <td>{{item.projectName | uppercase}}</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-primary m-1">
+                                            View
+                                        </button>
+                                        <button class="btn btn-sm btn-danger m-1">
+                                            Delete
+                                        </button>
+                                    </td>
+                                </tr>
+                                }
+                            } @else {
+                            <tr>
+                                <td colspan="5" class="text-center text-muted">
+                                    No Records Found
+                                </td>
+                            </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

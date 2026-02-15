@@ -7,69 +7,81 @@
                 <div class="card-header bg-primary text-white">
                     Client Form
                 </div>
-
-                <div class="card-body">
-
-               
+                <form #form="ngForm">
+                    <div class="card-body">
+    
+    
                         <div class="mb-3">
-
+    
                             <input type="text" hidden>
                         </div>
-
+    
                         <div class="mb-3">
                             <label>Contact Person</label>
-                            <input type="text" [(ngModel)]="clientObj.contactPersonName" class="form-control" >
+                            <input type="text" #personName="ngModel" required minlength="5"
+                                [(ngModel)]="clientObj.contactPersonName" class="form-control" name="contactPersonName">
+                            @if(personName.touched){
+                            <div class="text-danger">
+                                @if (personName?.errors?.['required']) {
+                                <span>Required</span>
+                                }
+                                @if (personName?.errors?.['minlength']) {
+                                <span>Min 5 char Required</span>
+                                }
+                            </div>
+                            }
                         </div>
-
+    
                         <div class="mb-2">
-                            <label  >Company Name</label>
-                            <input type="text" [(ngModel)]="clientObj.companyName" class="form-control">
-                        </div>
-                        <div class="mb-2">
-                            <label  >Address</label>
-                            <input type="text" [(ngModel)]="clientObj.address" class="form-control">
-                        </div>
-
-                        <div class="mb-2">
-                            <label  >City</label>
-                            <input type="text" [(ngModel)]="clientObj.city" class="form-control">
-                        </div>
-                        <div class="mb-2">
-                            <label  >Pincode</label>
-                            <input type="text" [(ngModel)]="clientObj.pincode" class="form-control" >
+                            <label>Company Name</label>
+                            <input type="text" [(ngModel)]="clientObj.companyName" class="form-control" name="companyName">
                         </div>
                         <div class="mb-2">
-                            <label  >State</label>
-                            <input type="text" [(ngModel)]="clientObj.state" class="form-control">
+                            <label>Address</label>
+                            <input type="text" [(ngModel)]="clientObj.address" class="form-control" name="address">
+                        </div>
+    
+                        <div class="mb-2">
+                            <label>City</label>
+                            <input type="text" [(ngModel)]="clientObj.city" class="form-control" name="city">
                         </div>
                         <div class="mb-2">
-                            <label  >Employee Strength</label>
-                            <input type="text" [(ngModel)]="clientObj.employeeStrength" class="form-control">
+                            <label>Pincode</label>
+                            <input type="text" [(ngModel)]="clientObj.pincode" class="form-control" name="pincode">
                         </div>
                         <div class="mb-2">
-                            <label  >Gst No</label>
-                            <input type="text" [(ngModel)]="clientObj.gstNo" class="form-control">
+                            <label>State</label>
+                            <input type="text" [(ngModel)]="clientObj.state" class="form-control" name="state">
                         </div>
                         <div class="mb-2">
-                            <label  >Contact No</label>
-                            <input type="text" [(ngModel)]="clientObj.contactNo" class="form-control">
+                            <label>Employee Strength</label>
+                            <input type="text" [(ngModel)]="clientObj.employeeStrength" class="form-control" name="employeeStrength">
                         </div>
                         <div class="mb-2">
-                            <label  >Registration No</label>
-                            <input type="text" [(ngModel)]="clientObj.regNo" class="form-control" >
+                            <label>Gst No</label>
+                            <input type="text" [(ngModel)]="clientObj.gstNo" class="form-control" name="gstNo">
                         </div>
-
+                        <div class="mb-2">
+                            <label>Contact No</label>
+                            <input type="text" [(ngModel)]="clientObj.contactNo" class="form-control" name="contactNo">
+                        </div>
+                        <div class="mb-2">
+                            <label>Registration No</label>
+                            <input type="text" [(ngModel)]="clientObj.regNo" class="form-control" name="regNo">
+                        </div>
+    
                         <div class="d-flex justify-content-between">
-                            <button type="button" class="btn btn-success" (click)="onSaveClient()">
-                                Save
+                            <button type="button" class="btn btn-success" [disabled]="!form.valid" (click)="onSaveClient()">
+                                {{clientObj.clientId !=0 ?'Update':'Save'}}
                             </button>
-
+    
                             <button type="button" class="btn btn-secondary" (click)="onClear()">
-                                Clear
+                                Reset
                             </button>
-                        </div>                
-
-                </div>
+                        </div>
+    
+                    </div>
+                </form>
             </div>
         </div>
 
